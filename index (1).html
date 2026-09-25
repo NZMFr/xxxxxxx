@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Slaorus Mini</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body data-accent="#c9b8ff">
+
+<canvas id="stars"></canvas>
+<div id="moonGlow"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="moon">🌙</span>
+    <span class="brand-name">Slaorus Mini</span>
+    <span id="streakBadge" class="streak-badge" title="Daily streak">🔥 1</span>
+  </div>
+  <div class="search-wrap">
+    <input id="search" type="text" placeholder="Search games..." autocomplete="off" />
+  </div>
+  <div class="top-actions">
+    <button id="randomBtn" class="chip-btn" title="Play a random game">🎲 Random</button>
+    <button id="statsBtn" class="chip-btn" title="Stats">📊 Stats</button>
+    <button id="addBtn" class="chip-btn accent" title="Add a game">＋ Add Game</button>
+    <button id="settingsBtn" class="gear" title="Settings">⚙️</button>
+  </div>
+</header>
+
+<nav id="chips" class="chips"></nav>
+
+<main id="library"></main>
+
+<!-- ===== GAME PLAYER ===== -->
+<div id="player" class="player hidden">
+  <div class="player-bar">
+    <div class="player-title"><span id="playerName"></span></div>
+    <div class="player-actions">
+      <span id="playerClock" class="player-clock">0s</span>
+      <button id="fsBtn" class="pbtn">Fullscreen</button>
+      <button id="tabBtn" class="pbtn">New tab</button>
+      <button id="closeBtn" class="pbtn close">Close</button>
+    </div>
+  </div>
+  <iframe id="playerFrame" src="about:blank" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+</div>
+
+<!-- ===== ADD GAME MODAL ===== -->
+<div id="addModal" class="modal hidden">
+  <div class="modal-card">
+    <h2>＋ Add Game</h2>
+    <p class="muted">Add a game to your library. Saved in this browser.</p>
+    <label>Name<input id="gName" type="text" placeholder="e.g. Bowmasters" /></label>
+    <label>Game URL<input id="gUrl" type="text" placeholder="https://example.com/game" /></label>
+    <label>Icon URL <span class="muted">(optional)</span><input id="gIcon" type="text" placeholder="https://example.com/icon.png" /></label>
+    <label>Tag <span class="muted">(optional)</span><input id="gTag" type="text" placeholder="e.g. Action, Puzzle" /></label>
+    <div class="modal-row">
+      <button id="saveGame" class="big-btn">Add Game</button>
+      <button class="big-btn ghost closeModal">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STATS MODAL ===== -->
+<div id="statsModal" class="modal hidden">
+  <div class="modal-card wide">
+    <h2>📊 Stats</h2>
+    <div id="statsBody"></div>
+    <div class="modal-row">
+      <button class="big-btn ghost closeModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SETTINGS MODAL ===== -->
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-card">
+    <h2>⚙️ Settings</h2>
+    <p class="muted">Adjust the launcher.</p>
+    <div class="setting-label">ACCENT</div>
+    <div id="accentRow" class="accent-row"></div>
+    <div class="setting-label">OPTIONS</div>
+    <label class="toggle-row">Ambient effects <span class="muted">Moon glow &amp; twinkling stars.</span>
+      <input id="fxToggle" type="checkbox" checked /><span class="switch"></span>
+    </label>
+    <label class="toggle-row">Reset all data
+      <button id="resetBtn" class="danger-btn">Reset</button>
+    </label>
+    <div class="modal-row">
+      <button id="saveSettings" class="big-btn">Save</button>
+      <button class="big-btn ghost closeModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="games.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
